@@ -47,7 +47,7 @@ class LaTeXPlotter:
             """
         })
     
-    def create_figure(self, grid_shape: Tuple[int, int] = (1, 1)):
+    def create_figure(self, grid_shape: Tuple[int, int] = (1, 1)) -> Tuple[plt.Figure, np.ndarray]:
         
         width_cm, height_cm = self._calculate_dimensions(grid_shape)
         fig, axes = plt.subplots(*grid_shape, figsize=(width_cm/2.54, height_cm/2.54))
@@ -69,7 +69,7 @@ class LaTeXPlotter:
         
         return fig, axes
     
-    def _calculate_dimensions(self, grid_shape: Tuple[int, int]):
+    def _calculate_dimensions(self, grid_shape: Tuple[int, int]) -> Tuple[float, float]:
         base_width_cm = 15.0
         
         special_aspects = {
@@ -105,8 +105,6 @@ class LaTeXPlotter:
         ax.spines['left'].set_position('zero')
         
         ax.grid(True, linestyle=':', alpha=0.5, color='#D3D3D3')
-        
-        # dafault lables because any figure MUST have it
         ax.set_xlabel(r'$x$, sec', loc='center')
         ax.set_ylabel(r'$y$, rad', loc='center')
     
@@ -134,7 +132,6 @@ class LaTeXPlotter:
 def example():
     from itertools import product
     
-    # test data
     x = np.linspace(0, 10, 100)
     y = np.sin(x) * np.cos(2 * x)
 
@@ -157,17 +154,4 @@ def example():
 
 
 if __name__ == "__main__":
-
-    # import pandas as pd
-    # def read_csv(filename: str):
-    #     data = pd.read_csv(filename)
-    #     return data['x'].values, data['y'].values
-
-    # import json
-    # def read_json(filename: str):
-    #     # for json structure: {'x': [...], 'y': [...]}
-    #     with open(filename) as f:
-    #         data = json.load(f)
-    #     return np.array(data['x']), np.array(data['y'])
-
     example()
