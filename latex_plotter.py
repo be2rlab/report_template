@@ -151,7 +151,7 @@ def example():
 
         for i, ax in enumerate(axes):
             ax.plot(x, y, color=plotter.COLORS[i])
-            plotter.set_axis_labels(ax, 't', 'A', 'sec', 'rad')
+            plotter.set_axis_labels(ax, 't', 'A', 'сек', 'рад')
 
         plotter.save(f"example_{dx}x{dy}.pdf")
 
